@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     float y;
     Vector2 movement;
     public float speed;
+    public bool freeMove;
     public Rigidbody2D rb;
     [HideInInspector] public int itemCount;
     public bool harItem1;
@@ -48,15 +49,23 @@ public class Movement : MonoBehaviour
         }
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
-        if (x > y)
+        if (freeMove)
         {
             movement.x = horizontal;
-            movement.y = 0;
-        }
-        if (x < y)
-        {
-            movement.x = 0;
             movement.y = vertical;
+        }
+        else
+        {
+            if (x > y)
+            {
+                movement.x = horizontal;
+                movement.y = 0;
+            }
+            if (x < y)
+            {
+                movement.x = 0;
+                movement.y = vertical;
+            }
         }
         rb.velocity = movement*speed;
         if (itemCount ==1)
