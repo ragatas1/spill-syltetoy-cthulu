@@ -14,10 +14,12 @@ public class Movement : MonoBehaviour
     public Rigidbody2D rb;
     [HideInInspector] public int itemCount;
     public bool harItem1;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         harItem1 = false;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -66,6 +68,33 @@ public class Movement : MonoBehaviour
                 movement.x = 0;
                 movement.y = vertical;
             }
+        }
+        if (x >y)
+        {
+            animator.SetInteger("MoveDirection", 3);
+        }
+        else if (x<y) 
+        {
+            if (vertical < 0)
+            {
+                animator.SetInteger("MoveDirection", 1);
+            }
+            else
+            {
+                animator.SetInteger("MoveDirection", 2);
+            }
+        }
+        else if (x==0 && y==0)
+        {
+            animator.SetInteger("MoveDirection", 0);
+        }
+        if (horizontal<0)
+        {
+            transform.localScale = new Vector3(-4, 4, 4);
+        }
+        else
+        {
+            transform.localScale = new Vector3(4,4,4);
         }
         rb.velocity = movement*speed;
         if (itemCount ==1)

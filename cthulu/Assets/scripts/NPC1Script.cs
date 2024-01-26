@@ -36,7 +36,7 @@ public class NPC1Script : MonoBehaviour
         if (spillerScript.harItem1 == true)
         {
             text.SetActive(true);
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetButton("Interact"))
             {
                 harItem = true;
                 spillerScript.itemCount = 0;
