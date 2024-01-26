@@ -10,6 +10,7 @@ public class NPC1Script : MonoBehaviour
     public bool harItem;
     public GameObject text;
     public GameObject son;
+    bool snakke;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,22 +31,29 @@ public class NPC1Script : MonoBehaviour
         {
             son.SetActive(false);
         }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (spillerScript.harItem1 == true)
+        text.SetActive(snakke);
+        if(snakke) 
         {
-            text.SetActive(true);
             if (Input.GetButton("Interact"))
             {
                 harItem = true;
                 spillerScript.itemCount = 0;
                 spillerScript.harItem1 = false;
+                spillerScript.hjerteCounter = spillerScript.hjerteCounter + 1;
+                snakke = false;
             }
+        }
+
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (spillerScript.harItem1 == true)
+        {
+            snakke = true;
         }
         else
         {
-            text.SetActive(false) ;
+            snakke = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

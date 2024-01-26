@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     [HideInInspector] public int itemCount;
     public bool harItem1;
     Animator animator;
+    public Animator counter;
+    [HideInInspector] public int hjerteCounter;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        counter.SetInteger("HjerteCounter", hjerteCounter);
         if (horizontal > -horizontal)
         {
             x = horizontal;
@@ -72,6 +75,14 @@ public class Movement : MonoBehaviour
         if (x >y)
         {
             animator.SetInteger("MoveDirection", 3);
+            if (horizontal < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
         }
         else if (x<y) 
         {
@@ -87,14 +98,6 @@ public class Movement : MonoBehaviour
         else if (x==0 && y==0)
         {
             animator.SetInteger("MoveDirection", 0);
-        }
-        if (horizontal<0)
-        {
-            transform.localScale = new Vector3(-4, 4, 4);
-        }
-        else
-        {
-            transform.localScale = new Vector3(4,4,4);
         }
         rb.velocity = movement*speed;
         if (itemCount ==1)
