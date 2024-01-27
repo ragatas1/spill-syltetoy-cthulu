@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Em.unity
     guid: d593e1bb0c057a34c9f01d3b1a527df4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/minigameforsok1.unity
     guid: bf61fc98d43970942ab86fb6df6f15d1
   - enabled: 1
