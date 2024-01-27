@@ -33,8 +33,8 @@ public class HandScript : MonoBehaviour
         {
             if (Input.GetButton("Interact"))
             {
-                logikkScript.harItem1 = true;
-                logikkScript.item1PlukketOpp = true;
+                logikkScript.harItem4 = true;
+                logikkScript.item4PlukketOpp = true;
                 SceneManager.LoadScene("Em");
             }
         }

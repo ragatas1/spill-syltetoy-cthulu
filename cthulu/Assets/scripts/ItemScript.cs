@@ -14,8 +14,8 @@ public class ItemScript : MonoBehaviour
     [HideInInspector] public Animator porAni;
     bool iNoe;
     public GameObject interactionText;
-    public GameObject dialog;
-    public Dialogue dialogScript;
+    [HideInInspector] public GameObject dialog;
+    [HideInInspector] public Dialogue dialogScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,16 +71,16 @@ public class ItemScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        interactionText.SetActive(iNoe);
         if (iNoe)
         {
-
+            interactionText.SetActive(true);
             if (itemNummer == 1)
             {
                 if (Input.GetButton("Interact"))
                 {
                     logikkScript.harItem1 = true;
                     logikkScript.item1PlukketOpp = true;
+                    Destroy(interactionText);
                     Destroy(gameObject);
                 }
             }
@@ -93,6 +93,7 @@ public class ItemScript : MonoBehaviour
                     {
                         logikkScript.harItem2 = true;
                         logikkScript.item2PlukketOpp = true;
+                        Destroy(interactionText);
                         Destroy(gameObject);
                     }
                     else
@@ -101,6 +102,35 @@ public class ItemScript : MonoBehaviour
                     }
                 }
             }
+            if (itemNummer == 3)
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    logikkScript.harItem3 = true;
+                    logikkScript.item3PlukketOpp = true;
+                    Destroy(interactionText);
+                    Destroy(gameObject);
+                }
+            }
+            if (itemNummer == 4)
+            {
+                if (Input.GetButton("Interact"))
+                {
+                    logikkScript.spillerPosisjon = spiller.transform.position;
+                    SceneManager.LoadScene("minigameforsok1");
+                }
+            }
+            if (itemNummer == 5)
+            {
+                logikkScript.harItem5 = true;
+                logikkScript.item5PlukketOpp = true;
+                Destroy(interactionText);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            interactionText.SetActive (false);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
