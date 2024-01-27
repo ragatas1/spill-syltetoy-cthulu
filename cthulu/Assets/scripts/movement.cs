@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     float y;
     Vector2 movement;
     public float speed;
+    public float runMultiplier;
     public bool freeMove;
     public Rigidbody2D rb;
     Animator animator;
@@ -39,7 +40,14 @@ public class Movement : MonoBehaviour
     }
     void move()
     {
-        rb.velocity = movement * speed;
+        if (Input.GetButton("Run"))
+        {
+            rb.velocity = movement * speed*runMultiplier;
+        }
+        else
+        {
+            rb.velocity = movement * speed;
+        }
         if (horizontal > -horizontal)
         {
             x = horizontal;

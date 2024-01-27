@@ -39,7 +39,9 @@ public class ItemScript : MonoBehaviour
             {
                 if (Input.GetButton("Interact"))
                 {
-                    SceneManager.LoadScene("minigameforsok1");
+                    logikkScript.harItem1 = true;
+                    logikkScript.item1PlukketOpp = true;
+                    Destroy(gameObject);
                 }
             }
         }

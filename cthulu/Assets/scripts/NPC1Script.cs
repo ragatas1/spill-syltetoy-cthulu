@@ -8,6 +8,9 @@ public class NPC1Script : MonoBehaviour
     public bool harItem;
     public GameObject interaction;
     public GameObject dialog;
+    public Dialogue dialogScript;
+    public GameObject winDialog;
+    public Dialogue winDialogScript;
     public GameObject text;
     public GameObject son;
     bool snakke;
@@ -26,29 +29,19 @@ public class NPC1Script : MonoBehaviour
         spillerScript = spiller.GetComponent<Movement>();
         text.SetActive(false);
         dialog.SetActive(false);
+        winDialog.SetActive(false);
         harItem = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (harItem)
-        {
-            son.SetActive(true);
-        }
-        else
-        {
-            son.SetActive(false);
-        }
-        text.SetActive(snakke);
         if(snakke) 
         {
             if (Input.GetButton("Interact"))
             {
-                harItem = true;
-                logikkScript.harItem1 = false;
-                logikkScript.hjerteCounter = logikkScript.hjerteCounter + 1;
-                snakke = false;
+                StartCoroutine(winDialogen());
+
             }
         }
         if (interact)
@@ -66,6 +59,7 @@ public class NPC1Script : MonoBehaviour
         {
             snakke = true;
             interact = false;
+            text.SetActive(true);
         }
         else if (logikkScript.item1PlukketOpp)
         {
@@ -81,17 +75,39 @@ public class NPC1Script : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         interaction.SetActive(false);
+        text.SetActive(false);
         snakke = false;
         interact = false;
     }
     IEnumerator dialogen()
     {
+        interact = false;
+        dialogScript.ferdig = false;
+        dialogScript.index = 0;
         spillerScript.moving = false;
         interaction.SetActive(false);
         dialog.SetActive(true);
-        yield return new WaitForSeconds(dialogLengde);
+        dialogScript.NextLine();
+        yield return new WaitUntil(() => dialogScript.ferdig == true);
         spillerScript.moving = true;
         dialog.SetActive(false);
         interact = false;
+    }
+    IEnumerator winDialogen()
+    {
+        snakke = false;
+        winDialogScript.ferdig = false;
+        winDialogScript.index = 0;
+        spillerScript.moving = false;
+        text.SetActive(false);
+        winDialog.SetActive(true);
+        winDialogScript.NextLine();
+        yield return new WaitUntil(() => winDialogScript.ferdig == true);
+        spillerScript.moving = true;
+        winDialog.SetActive(false);
+        harItem = true;
+        logikkScript.harItem1 = false;
+        logikkScript.hjerteCounter = logikkScript.hjerteCounter + 1;
+        snakke = false;
     }
 }

@@ -6,16 +6,31 @@ public class KameraScript : MonoBehaviour
 {
     GameObject spiller;
     Transform spillerT;
+    public float upperDeadZone;
+    public float lowerDeadZone;
+    public float rigthDeadZone;
+    public float leftDeadZone;
+    Vector3 posisjon;
     // Start is called before the first frame update
     void Start()
     {
         spiller = GameObject.FindGameObjectWithTag("spiller");
         spillerT = spiller.transform;
+        posisjon.z = transform.position.z;
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3( spillerT.position.x,spillerT.position.y,transform.position.z);
+        if (spillerT.position.y<upperDeadZone && spillerT.position.y>lowerDeadZone)
+        {
+            posisjon.y = spillerT.position.y;
+        }
+        if (spillerT.position.x < rigthDeadZone && spillerT.position.x > leftDeadZone)
+        {
+            posisjon.x = spillerT.position.x;
+        }
+        transform.position = posisjon;
     }
 }

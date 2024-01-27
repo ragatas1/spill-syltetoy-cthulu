@@ -10,9 +10,10 @@ public class Dialogue : MonoBehaviour
     public string[] lines;
 
     public float textSpeed;
-    private int index;
+    public int index;
+    [HideInInspector] public bool ferdig;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         textComponent.text = string.Empty;
         StartDialogue();
@@ -21,7 +22,7 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Interact"))
         {
             // Is text fully displayed? Go to next line
             if (textComponent.text == lines[index])
@@ -51,9 +52,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    void NextLine()
+    public void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (index < lines.Length-1 )
         {
             index++;
             textComponent.text = string.Empty;
@@ -61,6 +62,7 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            ferdig = true;
             textComponent.text = string.Empty;
         }
     }
