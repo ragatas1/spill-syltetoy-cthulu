@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class doColider : MonoBehaviour
+public class hippieColidor : MonoBehaviour
 {
     [HideInInspector] public GameObject logikk;
     [HideInInspector] public LogikkScript logikkScript;
@@ -24,7 +24,8 @@ public class doColider : MonoBehaviour
             interaction.SetActive(true);
             if (Input.GetButton("Interact"))
             {
-                SceneManager.LoadScene("Badet");
+                SceneManager.LoadScene("hippie");
+                logikkScript.spillerPosisjon = new Vector3(0+transform.localPosition.x, -3.1f, -2);
             }
         }
     }
@@ -35,5 +36,9 @@ public class doColider : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         touching = false;
+        if (interaction != null)
+        {
+            interaction.SetActive(false);
+        }
     }
 }

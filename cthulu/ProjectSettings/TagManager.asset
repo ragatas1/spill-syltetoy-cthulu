@@ -6,6 +6,8 @@ TagManager:
   tags:
   - spiller
   - Logikk
+  - tekst
+  - portrett
   layers:
   - Default
   - TransparentFX
