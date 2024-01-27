@@ -38,6 +38,34 @@ public class ItemScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        if (itemNummer == 2)
+        {
+            if (logikkScript.item2PlukketOpp)
+            {
+                Destroy(gameObject);
+            }
+        }
+        if (itemNummer == 3)
+        {
+            if (logikkScript.item3PlukketOpp)
+            {
+                Destroy(gameObject);
+            }
+        }
+        if (itemNummer == 4)
+        {
+            if (logikkScript.item4PlukketOpp)
+            {
+                Destroy(gameObject);
+            }
+        }
+        if (itemNummer == 5)
+        {
+            if (logikkScript.item5PlukketOpp)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     // Update is called once per frame
