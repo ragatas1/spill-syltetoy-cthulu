@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class NPC1Script : MonoBehaviour
 {
-    public bool harItem;
+    public GameObject portrait;
+    public Animator portraitA;
     public GameObject interaction;
     public GameObject dialog;
     public Dialogue dialogScript;
@@ -30,12 +31,13 @@ public class NPC1Script : MonoBehaviour
         text.SetActive(false);
         dialog.SetActive(false);
         winDialog.SetActive(false);
-        harItem = false;
+        portrait.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        endreAnsikt();
         if(snakke) 
         {
             if (Input.GetButton("Interact"))
@@ -87,11 +89,13 @@ public class NPC1Script : MonoBehaviour
         spillerScript.moving = false;
         interaction.SetActive(false);
         dialog.SetActive(true);
+        portrait.SetActive(true);
         dialogScript.NextLine();
         yield return new WaitUntil(() => dialogScript.ferdig == true);
         spillerScript.moving = true;
         dialog.SetActive(false);
         interact = false;
+        portrait.SetActive(false);
     }
     IEnumerator winDialogen()
     {
@@ -101,13 +105,28 @@ public class NPC1Script : MonoBehaviour
         spillerScript.moving = false;
         text.SetActive(false);
         winDialog.SetActive(true);
+        portrait.SetActive(true);
         winDialogScript.NextLine();
         yield return new WaitUntil(() => winDialogScript.ferdig == true);
         spillerScript.moving = true;
         winDialog.SetActive(false);
-        harItem = true;
         logikkScript.harItem1 = false;
         logikkScript.hjerteCounter = logikkScript.hjerteCounter + 1;
         snakke = false;
+        portrait.SetActive(false);
+    }
+    void endreAnsikt()
+    {
+        if (dialogScript.index == 1) { portraitA.SetInteger("hvilketAnsikt", 0); }
+        if (dialogScript.index == 2) { portraitA.SetInteger("hvilketAnsikt", 2); }
+        if (dialogScript.index == 3) { portraitA.SetInteger("hvilketAnsikt", 0); }
+        if (dialogScript.index == 4) { portraitA.SetInteger("hvilketAnsikt", 0); }
+        if (dialogScript.index == 5) { portraitA.SetInteger("hvilketAnsikt", 0); }
+        if (dialogScript.index == 6) { portraitA.SetInteger("hvilketAnsikt", 3); }
+        if (dialogScript.index == 7) { portraitA.SetInteger("hvilketAnsikt", 0); }
+        if (dialogScript.index == 8) { portraitA.SetInteger("hvilketAnsikt", 0); }
+        if (winDialogScript.index == 1) { portraitA.SetInteger("hvilketAnsikt", 1); }
+        if (winDialogScript.index == 2) { portraitA.SetInteger("hvilketAnsikt", 0); }
+        if (winDialogScript.index == 3) { portraitA.SetInteger("hvilketAnsikt", 0); }
     }
 }
