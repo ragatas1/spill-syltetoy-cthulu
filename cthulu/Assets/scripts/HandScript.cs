@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HandScript : MonoBehaviour
 {
@@ -10,10 +11,14 @@ public class HandScript : MonoBehaviour
     float vertical;
     public Rigidbody2D rb;
     public float speed;
+    public CollisionScript c;
+    [HideInInspector] public GameObject logikk;
+    [HideInInspector] public LogikkScript logikkScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        logikk = GameObject.FindGameObjectWithTag("Logikk");
+        logikkScript = logikk.GetComponent<LogikkScript>();
     }
 
     // Update is called once per frame
@@ -24,20 +29,14 @@ public class HandScript : MonoBehaviour
         movement.x = horizontal;
         movement.y = vertical;
         rb.velocity = movement*speed;
-        if (holderGreia == true)
+        if (c.colided == true)
         {
             if (Input.GetButton("Interact"))
             {
-                Debug.Log("tok greia");
+                logikkScript.harItem1 = true;
+                logikkScript.item1PlukketOpp = true;
+                SceneManager.LoadScene("Em");
             }
         }
-    }
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        holderGreia = true;
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        holderGreia = false;
     }
 }

@@ -12,22 +12,34 @@ public class Movement : MonoBehaviour
     public float speed;
     public bool freeMove;
     public Rigidbody2D rb;
-    [HideInInspector] public int itemCount;
-    public bool harItem1;
     Animator animator;
     public Animator counter;
-    [HideInInspector] public int hjerteCounter;
+    [HideInInspector] public GameObject logikk;
+    [HideInInspector] public LogikkScript logikkScript;
+    [HideInInspector] public bool moving;
     // Start is called before the first frame update
     void Start()
     {
-        harItem1 = false;
+        logikk = GameObject.FindGameObjectWithTag("Logikk");
+        logikkScript = logikk.GetComponent<LogikkScript>();
         animator = GetComponent<Animator>();
+        transform.position = logikkScript.spillerPosisjon;
+        moving = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        counter.SetInteger("HjerteCounter", hjerteCounter);
+        counter.SetInteger("HjerteCounter", logikkScript.hjerteCounter);
+        if (moving)
+        {
+            move();
+        }
+        logikkScript.spillerPosisjon = transform.position;
+    }
+    void move()
+    {
+        rb.velocity = movement * speed;
         if (horizontal > -horizontal)
         {
             x = horizontal;
@@ -72,7 +84,7 @@ public class Movement : MonoBehaviour
                 movement.y = vertical;
             }
         }
-        if (x >y)
+        if (x > y)
         {
             animator.SetInteger("MoveDirection", 3);
             if (horizontal < 0)
@@ -84,7 +96,7 @@ public class Movement : MonoBehaviour
                 transform.localScale = new Vector3(1, 1, 1);
             }
         }
-        else if (x<y) 
+        else if (x < y)
         {
             if (vertical < 0)
             {
@@ -95,14 +107,9 @@ public class Movement : MonoBehaviour
                 animator.SetInteger("MoveDirection", 2);
             }
         }
-        else if (x==0 && y==0)
+        else if (x == 0 && y == 0)
         {
             animator.SetInteger("MoveDirection", 0);
-        }
-        rb.velocity = movement*speed;
-        if (itemCount ==1)
-        {
-            harItem1 = true;
         }
     }
 }
