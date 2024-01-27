@@ -40,40 +40,9 @@ public class Movement : MonoBehaviour
     }
     void move()
     {
-        if (Input.GetButton("Run"))
-        {
-            rb.velocity = movement * speed*runMultiplier;
-        }
-        else
-        {
-            rb.velocity = movement * speed;
-        }
-        if (horizontal > -horizontal)
-        {
-            x = horizontal;
-        }
-        else if (horizontal < -horizontal)
-        {
-            x = -horizontal;
-        }
-        else
-        {
-            x = 0;
-        }
-        if (vertical > -vertical)
-        {
-            y = vertical;
-        }
-        else if (vertical < -vertical)
-        {
-            y = -vertical;
-        }
-        else
-        {
-            y = 0;
-        }
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+
         if (freeMove)
         {
             movement.x = horizontal;
@@ -81,42 +50,51 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if (x > y)
+            if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
             {
                 movement.x = horizontal;
                 movement.y = 0;
             }
-            if (x < y)
+            else if (Mathf.Abs(horizontal) < Mathf.Abs(vertical))
             {
                 movement.x = 0;
                 movement.y = vertical;
             }
         }
-        if (x > y)
+
+        if (movement.magnitude > 0)
         {
-            animator.SetInteger("MoveDirection", 3);
-            if (horizontal < 0)
+            if (Input.GetButton("Run"))
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                rb.velocity = movement.normalized * speed * runMultiplier;
             }
             else
+            {
+                rb.velocity = movement.normalized * speed;
+            }
+
+            if (movement.x > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
+                animator.SetInteger("MoveDirection", 3);
             }
-        }
-        else if (x < y)
-        {
-            if (vertical < 0)
+            else if (movement.x < 0)
             {
-                animator.SetInteger("MoveDirection", 1);
+                transform.localScale = new Vector3(-1, 1, 1);
+                animator.SetInteger("MoveDirection", 3);
             }
-            else
+            else if (movement.y > 0)
             {
                 animator.SetInteger("MoveDirection", 2);
             }
+            else if (movement.y < 0)
+            {
+                animator.SetInteger("MoveDirection", 1);
+            }
         }
-        else if (x == 0 && y == 0)
+        else
         {
+            rb.velocity = Vector2.zero;
             animator.SetInteger("MoveDirection", 0);
         }
     }
