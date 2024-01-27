@@ -250,7 +250,11 @@ MonoBehaviour:
   itemNummer: 1
   logikk: {fileID: 0}
   logikkScript: {fileID: 0}
+  portrett: {fileID: 0}
+  porAni: {fileID: 0}
   interactionText: {fileID: 957634215}
+  dialog: {fileID: 0}
+  dialogScript: {fileID: 0}
 --- !u!212 &14587963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1616,7 +1620,11 @@ MonoBehaviour:
   itemNummer: 1
   logikk: {fileID: 0}
   logikkScript: {fileID: 0}
+  portrett: {fileID: 0}
+  porAni: {fileID: 0}
   interactionText: {fileID: 0}
+  dialog: {fileID: 0}
+  dialogScript: {fileID: 0}
 --- !u!1001 &554143618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4425,6 +4433,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 616358348215607337, guid: d2f072b84045a9148b7291eeaa672418, type: 3}
+      propertyPath: counter
+      value: 
+      objectReference: {fileID: 1491275369}
     - target: {fileID: 3339895444636773294, guid: d2f072b84045a9148b7291eeaa672418, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

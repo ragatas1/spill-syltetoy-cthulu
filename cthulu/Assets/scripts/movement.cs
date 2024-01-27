@@ -13,8 +13,8 @@ public class Movement : MonoBehaviour
     public float runMultiplier;
     public bool freeMove;
     public Rigidbody2D rb;
-    Animator animator;
     public Animator counter;
+    public Animator animator;
     [HideInInspector] public GameObject logikk;
     [HideInInspector] public LogikkScript logikkScript;
     [HideInInspector] public bool moving;
@@ -23,7 +23,6 @@ public class Movement : MonoBehaviour
     {
         logikk = GameObject.FindGameObjectWithTag("Logikk");
         logikkScript = logikk.GetComponent<LogikkScript>();
-        animator = GetComponent<Animator>();
         transform.position = logikkScript.spillerPosisjon;
         moving = true;
     }
