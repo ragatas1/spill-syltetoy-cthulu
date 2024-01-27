@@ -6,8 +6,6 @@ public class Movement : MonoBehaviour
 {
     float horizontal;
     float vertical;
-    float x;
-    float y;
     Vector2 movement;
     public float speed;
     public float runMultiplier;
