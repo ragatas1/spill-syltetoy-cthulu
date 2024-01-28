@@ -12,11 +12,22 @@ public class Dialogue : MonoBehaviour
     public float textSpeed;
     public int index;
     [HideInInspector] public bool ferdig;
+    public GameObject Au1;
+    public AudioSource au1;
+    public GameObject Au2;
+    public AudioSource au2;
+    public int au;
+    int fix;
+    public int soundspeed = 2;
     // Start is called before the first frame update
     void Awake()
     {
         textComponent.text = string.Empty;
         StartDialogue();
+        Au1 = GameObject.FindGameObjectWithTag("au1");
+        au1 = Au1.GetComponent<AudioSource>();
+        Au2 = GameObject.FindGameObjectWithTag("au2");
+        au2 = Au2.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,6 +60,20 @@ public class Dialogue : MonoBehaviour
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
+            if (fix == 0)
+            {
+                au = Random.Range(1, 3);
+                if (au == 1)
+                {
+                    au1.Play();
+                }
+                else if (au == 2)
+                {
+                    au2.Play();
+                }
+                fix = soundspeed;
+            }
+            else { fix = fix-1; }
         }
     }
 

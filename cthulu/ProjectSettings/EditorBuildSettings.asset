@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Em.unity
     guid: d593e1bb0c057a34c9f01d3b1a527df4
   - enabled: 1
-    path: Assets/Scenes/minigameforsok1.unity
-    guid: bf61fc98d43970942ab86fb6df6f15d1
-  - enabled: 1
     path: Assets/Scenes/Badet.unity
     guid: 900333dbf8a65994caad0db104a162a9
   - enabled: 1
@@ -27,9 +24,15 @@ EditorBuildSettings:
     path: Assets/Scenes/klasserom.unity
     guid: 15c5eb409ab059343a897751c6b95cc0
   - enabled: 1
-    path: Assets/Scenes/credits.unity
-    guid: a439c3c08b42b374788b6c40918ac860
-  - enabled: 1
     path: Assets/Scenes/ute.unity
     guid: 085c8bc3994552f41b15516395e12e27
+  - enabled: 1
+    path: Assets/Scenes/minigameforsok1.unity
+    guid: bf61fc98d43970942ab86fb6df6f15d1
+  - enabled: 1
+    path: Assets/Scenes/tarot.unity
+    guid: c596bb2ac1061a84889fbc2bf1f298b6
+  - enabled: 1
+    path: Assets/Scenes/credits.unity
+    guid: a439c3c08b42b374788b6c40918ac860
   m_configObjects: {}

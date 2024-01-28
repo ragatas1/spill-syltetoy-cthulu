@@ -9,6 +9,8 @@ TagManager:
   - tekst
   - portrett
   - father
+  - au1
+  - au2
   layers:
   - Default
   - TransparentFX

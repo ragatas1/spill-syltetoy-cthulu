@@ -18,8 +18,8 @@ public class StartScript : MonoBehaviour
     {
         if (script.index == script.lines.Length-1)
         {
-            logikkScript.spillerPosisjon = new Vector3(0,-6,-2);
-            SceneManager.LoadScene("ute");
+            logikkScript.spillerPosisjon = new Vector3(0,-4,-2);
+            SceneManager.LoadScene("Em");
         }
     }
 }
