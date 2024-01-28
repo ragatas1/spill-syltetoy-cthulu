@@ -8,6 +8,7 @@ TagManager:
   - Logikk
   - tekst
   - portrett
+  - father
   layers:
   - Default
   - TransparentFX

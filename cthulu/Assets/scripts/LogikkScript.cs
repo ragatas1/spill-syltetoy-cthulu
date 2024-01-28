@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LogikkScript : MonoBehaviour
 {    
@@ -23,16 +24,29 @@ public class LogikkScript : MonoBehaviour
     public Vector3 spillerPosisjon;
     public float startY;
     public float startX;
+    public bool father;
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
         spillerPosisjon = new Vector3(startX,startY,-2);
+        father = false;
     }
+    
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(hjerteCounter >= 5)
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+
+            string sceneName = currentScene.name;
+
+            if (sceneName == "ute")
+            {
+                father = true;
+            }
+        }
     }
 }

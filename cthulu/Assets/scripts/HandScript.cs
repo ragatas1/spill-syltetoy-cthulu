@@ -11,6 +11,7 @@ public class HandScript : MonoBehaviour
     float vertical;
     public Rigidbody2D rb;
     public float speed;
+    public float run;
     public CollisionScript c;
     [HideInInspector] public GameObject logikk;
     [HideInInspector] public LogikkScript logikkScript;
@@ -29,6 +30,10 @@ public class HandScript : MonoBehaviour
         movement.x = horizontal;
         movement.y = vertical;
         rb.velocity = movement*speed;
+        if (Input.GetButton("Run"))
+        {
+            rb.velocity = movement * speed*run;
+        }
         if (c.colided == true)
         {
             if (Input.GetButton("Interact"))
