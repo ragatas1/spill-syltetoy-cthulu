@@ -14,13 +14,12 @@ public class ItemScript : MonoBehaviour
     [HideInInspector] public Animator porAni;
     bool iNoe;
     public GameObject interactionText;
-    [HideInInspector] public GameObject dialog;
+    public GameObject dialog;
     [HideInInspector] public Dialogue dialogScript;
     // Start is called before the first frame update
     void Start()
     {
         if (portrett != null) {porAni = portrett.GetComponent<Animator>();}
-        dialog = GameObject.FindGameObjectWithTag("tekst");
         if (dialog != null) 
         {
             dialogScript = dialog.GetComponent<Dialogue>();
@@ -122,10 +121,13 @@ public class ItemScript : MonoBehaviour
             }
             if (itemNummer == 5)
             {
-                logikkScript.harItem5 = true;
-                logikkScript.item5PlukketOpp = true;
-                Destroy(interactionText);
-                Destroy(gameObject);
+                if (Input.GetButton("Interact"))
+                {
+                    logikkScript.harItem5 = true;
+                    logikkScript.item5PlukketOpp = true;
+                    Destroy(interactionText);
+                    Destroy(gameObject);
+                }
             }
         }
         else
@@ -150,7 +152,6 @@ public class ItemScript : MonoBehaviour
         dialogScript.NextLine();
         dialogScript.index = 0;
         porAni.SetInteger("hvilketAnsikt", 31);
-        Debug.Log("ja");
         yield return new WaitUntil(() => dialogScript.ferdig == true);
         spillerScript.moving = true;
         dialog.SetActive(false);
