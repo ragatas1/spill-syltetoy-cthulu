@@ -28,8 +28,12 @@ public class LogikkScript : MonoBehaviour
     public bool tarotDialog;
     public int hvilkenTarrot;
     public AudioSource au;
+    public AudioSource au2;
+    public AudioSource au3;
     bool playAudio;
     bool fix;
+    public bool fix2;
+    public bool fix3;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +41,7 @@ public class LogikkScript : MonoBehaviour
         spillerPosisjon = new Vector3(startX,startY,-2);
         father = false;
         fix = true;
+        fix2 = true;
     }
     
 
@@ -71,6 +76,34 @@ public class LogikkScript : MonoBehaviour
         if (sceneName == "credits")
         {
             au.volume = au.volume-0.1f*Time.deltaTime;
+            if (au3.volume >= 0)
+            {
+                Application.Quit();
+            }
+        }
+        else if (sceneName == "hippie" || sceneName == "tarot")
+        {
+            if (fix2)
+            {
+                au.volume = 0;
+                au2.Play();
+                fix2 = false;
+            }
+        }
+        else if (sceneName == "ute")
+        {
+            if (fix3)
+            {
+                au.volume = 0;
+                au3.Play();
+                fix3 = false;
+            }
+        }
+        else
+        {
+            au3.Stop();
+            au2.Stop();
+            au.volume = 0.2f;
         }
     }
 }

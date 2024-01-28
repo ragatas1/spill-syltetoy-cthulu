@@ -22,8 +22,9 @@ public class utColider : MonoBehaviour
         if (touching)
         {
             interaction.SetActive(true);
-            if (Input.GetButton("Interact"))
+            if (Input.GetButtonDown("Interact"))
             {
+                logikkScript.fix3 = true;
                 SceneManager.LoadScene("ute");
                 logikkScript.spillerPosisjon = new Vector3(0, -2.9f, -2);
             }

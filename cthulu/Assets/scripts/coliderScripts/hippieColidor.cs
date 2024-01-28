@@ -23,9 +23,11 @@ public class hippieColidor : MonoBehaviour
         {
             interaction.SetActive(true);
             if (Input.GetButton("Interact"))
+            if (Input.GetButtonDown("Interact"))
             {
+                logikkScript.fix2 = true;
+                logikkScript.spillerPosisjon = new Vector3(0 + transform.localPosition.x, -3.1f, -2);
                 SceneManager.LoadScene("hippie");
-                logikkScript.spillerPosisjon = new Vector3(0+transform.localPosition.x, -3.1f, -2);
             }
         }
     }

@@ -22,7 +22,7 @@ public class utAvHippieColidor : MonoBehaviour
         if (touching)
         {
             interaction.SetActive(true);
-            if (Input.GetButton("Interact"))
+            if (Input.GetButtonDown("Interact"))
             {
                 SceneManager.LoadScene("Em");
                 logikkScript.spillerPosisjon = new Vector3(4.5f+transform.localPosition.x, 3.6f, -2);

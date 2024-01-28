@@ -22,7 +22,7 @@ public class utAvDoColider : MonoBehaviour
         if (touching)
         {
             interaction.SetActive(true);
-            if (Input.GetButton("Interact"))
+            if (Input.GetButtonDown("Interact"))
             {
                 SceneManager.LoadScene("Em");
                 logikkScript.spillerPosisjon = new Vector3(2.5f, -1.9f, -2);

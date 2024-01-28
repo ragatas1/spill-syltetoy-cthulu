@@ -22,10 +22,10 @@ public class doColider : MonoBehaviour
         if (touching)
         {
             interaction.SetActive(true);
-            if (Input.GetButton("Interact"))
+            if (Input.GetButtonDown("Interact"))
             {
-                SceneManager.LoadScene("Badet");
                 logikkScript.spillerPosisjon = new Vector3(-1.15f, -2, -2);
+                SceneManager.LoadScene("Badet");
             }
         }
     }

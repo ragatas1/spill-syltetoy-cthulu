@@ -22,7 +22,7 @@ public class klasseromColider : MonoBehaviour
         if (touching)
         {
             interaction.SetActive(true);
-            if (Input.GetButton("Interact"))
+            if (Input.GetButtonDown("Interact"))
             {
                 logikkScript.spillerPosisjon = new Vector3(-0.1f + transform.localPosition.x, -3.1f, -2);
                 SceneManager.LoadScene("klasserom");

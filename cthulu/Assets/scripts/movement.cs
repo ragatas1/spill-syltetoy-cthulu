@@ -33,7 +33,6 @@ public class Movement : MonoBehaviour
         {
             move();
         }
-        logikkScript.spillerPosisjon = transform.position;
     }
     void move()
     {
